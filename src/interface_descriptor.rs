@@ -102,6 +102,13 @@ impl<'a> InterfaceDescriptor<'a> {
 
         EndpointDescriptors { iter: endpoints.iter() }
     }
+
+    // Returns the extra data associated with the interface descriptor.
+    pub fn extra(&self) -> &'a [u8] {
+        unsafe { 
+            slice::from_raw_parts(self.descriptor.extra, self.descriptor.extra_length as usize)
+        }
+    }
 }
 
 impl<'a> fmt::Debug for InterfaceDescriptor<'a> {

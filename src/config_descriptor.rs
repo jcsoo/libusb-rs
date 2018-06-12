@@ -79,6 +79,13 @@ impl ConfigDescriptor {
 
         Interfaces { iter: interfaces.iter() }
     }
+
+    // Returns the extra data associated with the config descriptor.
+    pub fn extra(&self) -> &[u8] {
+        unsafe { 
+            slice::from_raw_parts((*self.descriptor).extra, (*self.descriptor).extra_length as usize)
+        }
+    }    
 }
 
 impl fmt::Debug for ConfigDescriptor {

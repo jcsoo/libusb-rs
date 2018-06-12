@@ -71,6 +71,13 @@ impl<'a> EndpointDescriptor<'a> {
     pub fn interval(&self) -> u8 {
         self.descriptor.bInterval
     }
+
+    // Returns the extra data associated with the endpoint descriptor.
+    pub fn extra(&self) -> &[u8] {
+        unsafe { 
+            ::std::slice::from_raw_parts((*self.descriptor).extra, (*self.descriptor).extra_length as usize)
+        }
+    }      
 }
 
 impl<'a> fmt::Debug for EndpointDescriptor<'a> {
