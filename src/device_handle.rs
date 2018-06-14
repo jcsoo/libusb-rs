@@ -39,6 +39,7 @@ unsafe impl<'a> Send for DeviceHandle<'a> {}
 unsafe impl<'a> Sync for DeviceHandle<'a> {}
 
 impl<'a> DeviceHandle<'a> {
+    /// Returns the raw `libusb` device handle.
     pub unsafe fn raw_handle(&self) -> *mut libusb_device_handle {
         self.handle
     }

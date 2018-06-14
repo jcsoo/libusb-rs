@@ -35,6 +35,7 @@ impl Context {
         Ok(Context { context: context })
     }
 
+    /// Returns the raw `libusb` context.
     pub unsafe fn raw_context(&self) -> *mut libusb_context {
         self.context
     }
