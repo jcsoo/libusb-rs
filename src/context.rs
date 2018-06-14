@@ -35,6 +35,10 @@ impl Context {
         Ok(Context { context: context })
     }
 
+    pub unsafe fn raw_context(&self) -> *mut libusb_context {
+        self.context
+    }
+
     /// Sets the log level of a `libusb` context.
     pub fn set_log_level(&mut self, level: LogLevel) {
         unsafe {

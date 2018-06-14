@@ -39,6 +39,10 @@ unsafe impl<'a> Send for DeviceHandle<'a> {}
 unsafe impl<'a> Sync for DeviceHandle<'a> {}
 
 impl<'a> DeviceHandle<'a> {
+    pub unsafe fn raw_handle(&self) -> *mut libusb_device_handle {
+        self.handle
+    }
+
     /// Returns the active configuration number.
     pub fn active_configuration(&self) -> ::Result<u8> {
         let mut config = unsafe { mem::uninitialized() };
